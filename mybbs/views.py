@@ -234,7 +234,7 @@ def set_bbs_cookies(request,ip):
     cookielist.append(ip)
     cookielist=list(set(cookielist))
     request.session['cookielist']=cookielist
-    return len(cookielist)
+    return len(cookielist)+1
     #return response
 
 def get_bbs_cookies():
