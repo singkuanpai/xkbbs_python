@@ -1,0 +1,106 @@
+{% extends "bbs_master.html" %} 
+{% block content %} 
+
+  <div class="center_content">
+
+    <div id="right_wrap">
+    <div id="right_content">
+    <h2>Add Post</h2>
+
+
+<script  language="javascript">
+<!--
+function  CheckForm()
+{  
+if  (document.form.username.value.length  ==  0)  {  
+	alert("your username length must more than 3!");
+	document.form.username.focus();
+	return  false;
+}
+
+if  (document.form.title.value.length  ==  0)  {  
+	alert("your title length must more than 3!");
+	document.form.title.focus();
+	return  false;
+}
+if  (document.form.content.value.length  ==  0)  {  
+	alert("your content length must more than 3!");
+	document.form.content.focus();
+	return  false;
+}
+
+
+
+return  true;
+}
+-->
+</script>
+
+ <div id="tab1" class="tabcontent">
+        <h3>You should add the username,title and content</h3>
+        <div class="form">
+
+            <form method="post" action="/writeok/" name="form" onsubmit="return CheckForm()">
+            <div class="form_row">
+            <label>UserName:</label>
+            <input type="text" class="form_input" name="username" />
+            </div>
+
+            <div class="form_row">
+            <label>Title:</label>
+            <input type="text" class="form_input" name="title" />
+            </div> 
+
+             <div class="form_row">
+            <label>Content:</label>
+            <textarea class="form_textarea" name="content"></textarea>
+            </div>
+            <div class="form_row">
+            <input type="submit" class="form_submit" value="Submit"  />
+            </div>
+            </form>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+
+
+     </div>
+     </div><!-- end of right content-->
+
+
+    <div class="sidebar" id="sidebar">
+
+    <h2>My Info</h2>
+    <div class="sidebar_section_text">
+my ip: {{yuourip}}<br/>
+my agent: {{youragent}}
+    </div>
+
+
+    <h2>Browse categories</h2>
+
+        <ul>
+            <li><a href="#" class="selected">ie</a></li>
+            <li><a href="#">firefox</a></li>
+            <li><a href="#">chrome</a></li>
+            <li><a href="#">opera</a></li>
+            
+        </ul>
+
+
+
+    </div>
+
+
+    <div class="clear"></div>
+    </div> <!--end of center_content-->
+
+ 
+
+
+
+ 
+{%endblock%}
+
+

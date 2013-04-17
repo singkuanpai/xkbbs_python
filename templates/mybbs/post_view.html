@@ -1,0 +1,141 @@
+
+{% extends "bbs_master.html" %} 
+
+{% block content %} 
+
+    <div class="center_content">
+
+    <div id="right_wrap">
+    <div id="right_content">
+    <h2>Subject: {{xvar.title}}</h2>
+
+
+<script  language="javascript">
+<!--
+function $(id){
+return document.getElementById(id);
+}
+
+function quote(id){//ie6i
+var tagid=("content_"+String(id));
+var value = $(tagid).innerHTML;
+if(value=="" || typeof(value)=="undefined"){
+    value=$(tagid).textContent;
+}
+value=value.replace('<div style="padding:4px;background-color:#ffffe1;border:1px solid gray">',"[quote]"); 
+value=value.replace('</div>',"[/quote]"); 
+$("content").innerHTML="[quote]"+value+"[/quote]";
+$("content").focus();
+} 
+-->
+</script>
+
+    <div id="tab3" class="tabcontent">
+{% load myrequote  %} 
+        <h3>Title:{{xvar.title}}</h3>
+        <p>username:{{xvar.username}} | uv:{{xvar.uv}} , pv:{{xvar.pv}} , replys:{{xvar.renum}} | posttime {{xvar.posttime|date:'m-d f'}} , replytime: {{xvar.replytime|date:'m-d f'}}</p>
+       <p>{{xvar.content}}</p>       
+    </div>
+
+	<div id="tab3" class="tabcontent">
+	 {% for  vvar in vvars   %}
+	<ul class="lists">            
+<span id="content_{{vvar.id}}">	{{vvar.username}} say:  {{vvar.content|myrequote|safe}}  </span>    
+	</ul>
+	 <ul>  ==>  <button onclick="quote({{vvar.id}})">quote</button>   <==  username:{{vvar.username}} | posttime: {{vvar.posttime|date:"f,Y-m-d"}} </ul>
+	<div class="toogle_wrap">httpagent:{{vvar.browsertype}}        </div>
+	{% endfor  %}
+	</div>
+
+<div class="toogle_wrap">
+
+           <div class="pagenavi"><span class="pages">Page {{vvars.number}} of {{vvars.paginator.num_pages}}</span>
+         {% if vvars.has_previous  %}
+        <a href="?page= {{vvars.previous_page_number}}"><<</a>
+        {% endif %}
+
+        {% for p in page_range %}
+        {% ifequal p vvars.number %}
+        <span class="current">{{p}}</span>
+        {% else %}
+        <a href="?page={{p}}" title="{{p}}">{{p}}</a>
+        {% endifequal %}
+        {% endfor %}
+        <!--<span class="current"></span>-->
+        {% if vvars.has_next  %}
+        <a href="?page={{vvars.next_page_number}}" title="{{vvars.next_page_number}}">>></a> 
+        {% endif %}
+        <!--<a href="#" >&raquo;</a>--></div>
+</div>
+   <div class="clear"></div> 
+
+<script  language="javascript">
+<!--
+function  CheckForm()
+{  
+if  (document.form.username.value.length  ==  0)  {  
+	alert("your username length must more than 3!");
+	document.form.username.focus();
+	return  false;
+}
+
+if  (document.form.content.value.length  ==  0)  {  
+	alert("your content length must more than 3!");
+	document.form.content.focus();
+	return  false;
+}
+return  true;
+}
+-->
+</script>    
+
+
+ 
+ <div id="tab1" class="tabcontent">
+        <h3>Reply :   You should add the username and content</h3>
+        <div class="form">
+
+            <form method="post" action="/reply_writeok/" name="form" onsubmit="return CheckForm()" >
+            <div class="form_row">
+            <label>UserName:</label>
+            <input type="text" class="form_input" name="username" />
+            </div>
+
+             <div class="form_row">
+            <label>Content:</label>
+            <textarea class="form_textarea" name="content"  id="content"></textarea>
+            </div>
+            <div class="form_row"><input type="hidden" name="tid" value="{{xvar.id}}"/>
+            <input type="submit" class="form_submit" value="Submit" />
+            </div>
+            </form>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+ 
+     </div>
+     </div><!-- end of right content-->
+
+
+    <div class="sidebar" id="sidebar">
+
+    <h2>My Info</h2>
+    <div class="sidebar_section_text">my ip:{{yourip}}<br/>my agent:{{youragent}} </div>
+    <h2>Browse categories</h2>
+        <ul>
+            <li><a href="#" class="selected">ie</a></li>
+            <li><a href="#">firefox</a></li>
+            <li><a href="#">chrome</a></li>
+            <li><a href="#">opera</a></li>
+        
+        </ul>
+    </div>
+
+
+    <div class="clear"></div>
+    </div> <!--end of center_content-->
+ 
+{%endblock%}
+
+

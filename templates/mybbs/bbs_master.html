@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{title}}mybbs-borezhi.com</title>
+<link rel="stylesheet" type="text/css" href="/static/mybbs/style.css" />
+<link href='http://fonts.googleapis.com/css?family=Belgrano' rel='stylesheet' type='text/css'>
+<script language=javascript> 
+var t1 = new Date().getTime(); 
+</script> 
+
+</head>
+<body>
+<div id="panelwrap">
+
+	<div class="header">
+    <div class="title"><a href="#">MyBBS-borezhi.com</a></div>
+
+    <div class="header_right">Welcome! </div>
+
+    <div class="menu">
+    <ul>
+    <li><a href="/" class="selected">Home Page</a></li>
+    <li><a href="/list/">List</a></li>
+    <li><a href="/write/">Add Post</a></li>
+  
+    </ul>
+    </div>
+
+    </div>
+
+ {% block content %} {% endblock %}
+
+ <div class="footer"><span> online ips :{{onlines}}   </span>  <span id="TimeShow"></span>     </div>
+
+
+</div>
+
+<script language=javascript> 
+window.onload = function() 
+{ 
+document.getElementById("TimeShow").innerHTML = "This page Load need "+ (new Date().getTime()-t1) +" ms"; 
+} 
+</script> 
+
+</body>
+</html>
+

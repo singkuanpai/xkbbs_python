@@ -1,0 +1,98 @@
+{% extends "bbs_master.html" %} 
+{% block content %} 
+
+
+  <div class="center_content">
+
+    <div id="right_wrap">
+    <div id="right_content">
+    <h2>Subject List</h2>
+
+
+<table id="rounded-corner">
+    <thead>
+    	<tr>
+       
+            <th>title</th>
+            <th>username</th>
+            <th>posttime</th>
+            <th>replynum</th>
+            <th>lastreplytime</th>
+            <th>uv/pv</th>
+            <th>ip</th>
+            <th>option</th>
+        </tr>
+    </thead>
+        <tf
+    </tfoot>
+    <tbody>
+{% for  xvar in xvars   %}
+    	<tr class="odd">  <!--class="even" -->
+        
+            <td><a href="/view/tid/{{ xvar.id }}" target="_blank" > {{xvar.title}} </a></td>
+            <td>{{xvar.username}}</td>
+            <td>{{xvar.posttime|date:"m-d,f"}}  </td>
+            <td>{{xvar.renum}} </td>
+            <td>{{xvar.replytime|date:"m-d,f"}} 
+</td>
+            <td>{{xvar.uv}}/{{xvar.pv}} </td>
+            <td>{{xvar.ip}} </td>
+
+            <td><a href="#"><img src="/static/mybbs/images/edit.png" alt="" title="" border="0" /></a><a href="#"><img src="/static/mybbs/images/trash.gif" alt="" title="" border="0" /></a></td>
+        </tr>
+{% endfor  %}
+    
+ 
+    	<tr class="even">
+        	<td colspan="8">  
+
+       <div class="pagenavi"><span class="pages">Page {{xvars.number}} of {{xvars.paginator.num_pages}}</span>
+	 {% if xvars.has_previous  %}
+        <a href="?page= {{xvars.previous_page_number}}"><<</a>
+        {% endif %}
+
+	{% for p in page_range %}
+	{% ifequal p xvars.number %}
+	<span class="current">{{p}}</span>
+	{% else %}
+	<a href="?page={{p}}" title="{{p}}">{{p}}</a>
+	{% endifequal %}
+	{% endfor %}
+	<!--<span class="current"></span>-->
+	{% if xvars.has_next  %}
+	<a href="?page={{xvars.next_page_number}}" title="{{xvars.next_page_number}}">>></a> 
+	{% endif %}
+	<!--<a href="#" >&raquo;</a>--></div>
+
+
+        </td>
+        </tr>
+
+
+    </tbody>
+</table>
+     </div>
+     </div><!-- end of right content-->
+
+
+    <div class="sidebar" id="sidebar">
+
+    <h2>My Info</h2>
+    <div class="sidebar_section_text">
+myip: {{yourip}}<br/>
+myhttpagent: {{youragent}}
+    </div>
+
+
+    <h2>Browse categories</h2>
+
+        <ul>
+            <li><a href="#" class="selected">ie</a></li>
+            <li><a href="#">firefox</a></li>
+            <li><a href="#">chrome</a></li>
+            <li><a href="#">opera</a></li>
+        </ul>
+    </div>
+    <div class="clear"></div>
+    </div> <!--end of center_content--> 
+{%endblock%}
